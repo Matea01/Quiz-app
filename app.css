@@ -79,3 +79,31 @@ direction od text in columns(vertical). By default flex box direction is horizon
     display: none;
 }
 
+/*BUTTON AREA*/
+
+.btn{
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    width:20rem;
+    text-align:center;
+    border: 0.1rem solid #56a5eb;
+    margin-bottom:1rem;
+    text-decoration:none;/*by default anchore tags are underlined*/
+    color:#56a5eb;
+    background-color: white;
+
+}
+
+.btn:hover{
+    cursor:pointer;
+    box-shadow:0 0.4rem 0 rgb(86, 18, 235, 0.5);
+    transform:translateY(-0.1rem);/*move a  bit up*/
+    transition:transform 150ms;/*let it transition over a period of time*/
+}
+
+.btn[disabled]:hover {
+    cursor:not-allowed;
+    box-shadow: none;
+    transform:none;
+}
+

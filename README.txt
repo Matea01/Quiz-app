@@ -40,3 +40,5 @@ But with box sizing is like this:
   box-sizing: border-box;
 }
 both are the same size.
+
+-p.choice-text pa enter stvara klasu choice-text tipa p
