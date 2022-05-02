@@ -1,5 +1,8 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const questionCounterText = document.getElementById('questionCounter');
+const scoreText= document.getElementById('score');
+
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -52,6 +55,9 @@ getNewQuestion = () => {
     return window.location.assign("/end.html");
   }
   questionCounter++;
+  //questionCounterText.innerText = questionCounter + "/"+MAX_QUESTIONS;
+  questionCounterText.innerText = `${questionCounter}/${MAX_QUESTIONS}`;
+
   const questionIndex = Math.floor(Math.random() * availableQuesions.length);
   currentQuestion = availableQuesions[questionIndex];
   question.innerText = currentQuestion.question;
@@ -73,16 +79,28 @@ choices.forEach(choice => {
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
 
+    //ternary operator
     const classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
+    if (classToApply === "correct") {
+      incrementScore(CORRECT_BONUS);
+    }
+
+    //apply this class-we want whole container that's why parent element
     selectedChoice.parentElement.classList.add(classToApply);
 
+    //give a bit delay before we move the class
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
       getNewQuestion();
-    }, 1000);
+    }, 1000);//parametar how long we wnt it to be delayed 1000ms =1s
   });
 });
+
+incrementScore = numb => {
+    score += numb;
+    scoreText.innerText = score;
+  };
 
 startGame();
